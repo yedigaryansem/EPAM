@@ -70,7 +70,7 @@ public class SimpleCalculatorTest {
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void mulExceptionTest() throws IllegalArgumentException{
 
-        int testValue1 = Integer.MAX_VALUE - 1; // Integer's maximum value is 2147483647 .
+        int testValue1 = Integer.MAX_VALUE - 1;
         int testValue2 = 2;
         int actualValue = SimpleCalculator.mul(testValue1, testValue2);
 
@@ -79,7 +79,7 @@ public class SimpleCalculatorTest {
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void sumExceptionTest() throws IllegalArgumentException{
 
-        int testValue1 = Integer.MAX_VALUE - 1; // Integer's maximum value is 2147483647 .
+        int testValue1 = Integer.MAX_VALUE - 1;
         int testValue2 = Integer.MAX_VALUE - 1;
         int actualValue = SimpleCalculator.sum(testValue1, testValue2);
 
@@ -88,8 +88,8 @@ public class SimpleCalculatorTest {
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void subExceptionTest() throws IllegalArgumentException{
 
-        int testValue1 = Integer.MIN_VALUE + 1; // Integer's minimum value is -2147483648 .
-        int testValue2 = Integer.MAX_VALUE;     // Integer's maximum value is 2147483647 .
+        int testValue1 = Integer.MIN_VALUE + 1;
+        int testValue2 = Integer.MAX_VALUE;
         int actualValue = SimpleCalculator.sub(testValue1, testValue2);
 
     }
