@@ -1,37 +1,37 @@
 package calculator;
 
-import java.security.InvalidParameterException;
-
 public class SimpleCalculator {
 
-    public static int sum(int a, int b) throws InvalidParameterException {
+    public static int sum(int a, int b) throws ArithmeticException {
+        //Overflow iff both arguments have the opposite sign of the result
 
-        long IntOverflowChecker = (long) a + (long) b;
-        if (IntOverflowChecker > Integer.MAX_VALUE) {
-            throw new InvalidParameterException("The Argument's value bigger than maximum integer value");
+        int res = a + b;
+
+        if (((a ^ res) & (b ^ res)) < 0) {
+            throw new ArithmeticException("integer overflow");
         }
-
-        return a + b;
+        return res;
     }
 
-    public static int sub(int a, int b) throws InvalidParameterException {
+    public static int sub(int a, int b) throws ArithmeticException {
+        // Overflow iff the arguments have different signs and
+        // the sign of the result is different from the sign of a
 
-        long IntOverflowChecker = (long) a - (long) b;
-        if (IntOverflowChecker < Integer.MIN_VALUE) {
-            throw new InvalidParameterException("The Argument's value bigger than maximum integer value");
+        int res = a - b;
+
+        if (((a ^ b) & (a ^ res)) < 0) {
+            throw new ArithmeticException("integer overflow");
         }
-
-        return a - b;
+        return res;
     }
 
-    public static int mul(int a, int b) throws InvalidParameterException {
+    public static int mul(int a, int b) throws ArithmeticException {
 
-        long IntOverflowChecker = (long) a + (long) b;
-        if (IntOverflowChecker > Integer.MAX_VALUE) {
-            throw new InvalidParameterException("The Argument's value bigger than maximum integer value");
+        long res = (long)a * (long)b;
+        if ((int)res != res) {
+            throw new ArithmeticException("integer overflow");
         }
-
-        return a * b;
+        return (int)res;
     }
 
     public static float div(float a, float b) throws ArithmeticException {

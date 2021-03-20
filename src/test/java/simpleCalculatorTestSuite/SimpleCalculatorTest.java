@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class SimpleCalculatorTest {
 
     @Test
-    public void sumTest() throws IllegalArgumentException{
+    public void sumTest(){
 
         int testValue1 = 15;
         int testValue2 = 5;
@@ -20,7 +20,7 @@ public class SimpleCalculatorTest {
     }
 
     @Test
-    public void divTest() throws ArithmeticException{
+    public void divTest(){
 
         float testValue1 = 15;
         float testValue2 = 5;
@@ -33,7 +33,7 @@ public class SimpleCalculatorTest {
     }
 
     @Test
-    public void subTest() throws IllegalArgumentException{
+    public void subTest(){
 
         int testValue1 = 15;
         int testValue2 = 5;
@@ -46,7 +46,7 @@ public class SimpleCalculatorTest {
     }
 
     @Test()
-    public void mulTest() throws IllegalArgumentException{
+    public void mulTest(){
 
         int testValue1 = 4;
         int testValue2 = 5;
@@ -67,8 +67,8 @@ public class SimpleCalculatorTest {
 
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void mulExceptionTest() throws IllegalArgumentException{
+    @Test(expectedExceptions = ArithmeticException.class)
+    public void mulExceptionTest() throws ArithmeticException{
 
         int testValue1 = Integer.MAX_VALUE - 1;
         int testValue2 = 2;
@@ -76,8 +76,8 @@ public class SimpleCalculatorTest {
 
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void sumExceptionTest() throws IllegalArgumentException{
+    @Test(expectedExceptions = ArithmeticException.class)
+    public void sumExceptionTest() throws ArithmeticException{
 
         int testValue1 = Integer.MAX_VALUE - 1;
         int testValue2 = Integer.MAX_VALUE - 1;
@@ -85,8 +85,8 @@ public class SimpleCalculatorTest {
 
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void subExceptionTest() throws IllegalArgumentException{
+    @Test(expectedExceptions = ArithmeticException.class)
+    public void subExceptionTest() throws ArithmeticException{
 
         int testValue1 = Integer.MIN_VALUE + 1;
         int testValue2 = Integer.MAX_VALUE;
