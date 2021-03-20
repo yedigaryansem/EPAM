@@ -1,16 +1,13 @@
 package simpleCalculatorTestSuite;
 
-import java.io.IOException;
-
 import calculator.SimpleCalculator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 public class SimpleCalculatorTest {
 
     @Test
-    public void sumTest() throws Exception{
+    public void sumTest() throws IllegalArgumentException{
 
         int testValue1 = 15;
         int testValue2 = 5;
@@ -23,7 +20,7 @@ public class SimpleCalculatorTest {
     }
 
     @Test
-    public void divTest() throws Exception{
+    public void divTest() throws ArithmeticException{
 
         float testValue1 = 15;
         float testValue2 = 5;
@@ -36,7 +33,7 @@ public class SimpleCalculatorTest {
     }
 
     @Test
-    public void subTest() throws Exception{
+    public void subTest() throws IllegalArgumentException{
 
         int testValue1 = 15;
         int testValue2 = 5;
@@ -49,7 +46,7 @@ public class SimpleCalculatorTest {
     }
 
     @Test()
-    public void mulTest() throws Exception{
+    public void mulTest() throws IllegalArgumentException{
 
         int testValue1 = 4;
         int testValue2 = 5;
@@ -61,8 +58,8 @@ public class SimpleCalculatorTest {
 
     }
 
-    @Test(expectedExceptions = Exception.class)
-    public void divExceptionTest() throws Exception{
+    @Test(expectedExceptions = ArithmeticException.class)
+    public void divExceptionTest() throws ArithmeticException{
 
         float testValue1 = 5;
         float testValue2 = 0;
@@ -70,8 +67,8 @@ public class SimpleCalculatorTest {
 
     }
 
-    @Test(expectedExceptions = Exception.class)
-    public void mulExceptionTest() throws Exception{
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void mulExceptionTest() throws IllegalArgumentException{
 
         int testValue1 = Integer.MAX_VALUE - 1; // Integer's maximum value is 2147483647 .
         int testValue2 = 2;
@@ -79,8 +76,8 @@ public class SimpleCalculatorTest {
 
     }
 
-    @Test(expectedExceptions = Exception.class)
-    public void sumExceptionTest() throws Exception{
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void sumExceptionTest() throws IllegalArgumentException{
 
         int testValue1 = Integer.MAX_VALUE - 1; // Integer's maximum value is 2147483647 .
         int testValue2 = Integer.MAX_VALUE - 1;
@@ -88,8 +85,8 @@ public class SimpleCalculatorTest {
 
     }
 
-    @Test(expectedExceptions = Exception.class)
-    public void subExceptionTest() throws Exception{
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void subExceptionTest() throws IllegalArgumentException{
 
         int testValue1 = Integer.MIN_VALUE + 1; // Integer's minimum value is -2147483648 .
         int testValue2 = Integer.MAX_VALUE;     // Integer's maximum value is 2147483647 .
@@ -97,6 +94,4 @@ public class SimpleCalculatorTest {
 
     }
 
-
 }
-
