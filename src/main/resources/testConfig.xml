@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="testConfig" verbose="1">
+    <test name="greetzFeatures">
+        <classes>
+            <class name="greetznlTestSuite.GreetzFeaturesTest">
+                <methods>
+                    <include name="addFavoriteTest"/>
+                    <include name="itemQuantityEqualPriceTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
