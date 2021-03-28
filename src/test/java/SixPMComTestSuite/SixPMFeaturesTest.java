@@ -62,11 +62,11 @@ public class SixPMFeaturesTest {
         int countOfItems = listOfAllItems.size();
         int randomItemIndex = random.nextInt(countOfItems);
 
-        List <WebElement> actItemNameElem = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(itemNameElemActual)));
+        List <WebElement> actItemNameElem = driver.findElements(By.xpath(itemNameElemActual));
         String actualItemName = actItemNameElem.get(randomItemIndex).getText();
-        List <WebElement> actItemInfoElem = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(itemInfoElemActual)));
+        List <WebElement> actItemInfoElem = driver.findElements(By.xpath(itemInfoElemActual));
         String actualItemInfo = actItemInfoElem.get(randomItemIndex).getText();
-        List <WebElement> actItemPriceElem = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(itemPriceElemActual)));
+        List <WebElement> actItemPriceElem = driver.findElements(By.xpath(itemPriceElemActual)  );
         String actualItemPrice = actItemPriceElem.get(randomItemIndex).getText();
 
         listOfAllItems.get(randomItemIndex).click();
@@ -74,14 +74,14 @@ public class SixPMFeaturesTest {
         WebElement addToBagElem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(addToBagElemXPath)));
         addToBagElem.click();
 
-        WebElement viewBugButtonElem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewBugButtonElemXPath)));
-        viewBugButtonElem.click();
+        WebElement viewBagButtonElem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewBugButtonElemXPath)));
+        viewBagButtonElem.click();
 
         WebElement expItemNameElem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(itemNameElemExpected)));
         String expectedItemName = expItemNameElem.getText();
-        WebElement expItemInfoElem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(itemInfoElemExpected)));
+        WebElement expItemInfoElem = driver.findElement(By.xpath(itemInfoElemExpected));
         String expectedItemInfo = expItemInfoElem.getText();
-        WebElement expItemPriceElem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(itemPriceElemExpected)));
+        WebElement expItemPriceElem = driver.findElement(By.xpath(itemPriceElemExpected));
         String expectedItemPrice = expItemPriceElem.getText();
 
         Assert.assertEquals(actualItemName,expectedItemName,"The actual item name does not match with expected item name");
