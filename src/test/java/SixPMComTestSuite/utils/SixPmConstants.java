@@ -17,4 +17,8 @@ public class SixPmConstants {
     public static String itemPriceElemExpected = ".//em[@class=\"yh-z Bh-z\"]";
     public static String itemQuantityDropDownXpath = ".//div[@class=\"Tk-z\"]//select";
     public static String removeButtonFromDropDownXpath = ".//option[@value=\"0\"]";
+
+    public static String actItemsNam = ".//div[@class='js-z']//article[@class=\"py-z ns-z\"]//dd[@class=\"Zv-z\"]";
+    public static String actItemsInfo = ".//div[@class='js-z']//article[@class=\"py-z ns-z\"]//dd[@class=\"_v-z\"]";
+    public static String actItemsPrice = ".//div[@class='js-z']//article[@class=\"py-z ns-z\"]//span[@class=\"Ty-z\"]";
 }
