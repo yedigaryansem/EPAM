@@ -62,11 +62,11 @@ public class SixPMFeaturesTest {
         int countOfItems = listOfAllItems.size();
         int randomItemIndex = random.nextInt(countOfItems);
 
-        List <WebElement> actItemNameElem = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(actItemsNam)));
+        List <WebElement> actItemNameElem = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(itemNameElemActual)));
         String actualItemName = actItemNameElem.get(randomItemIndex).getText();
-        List <WebElement> actItemInfoElem = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(actItemsInfo)));
+        List <WebElement> actItemInfoElem = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(itemInfoElemActual)));
         String actualItemInfo = actItemInfoElem.get(randomItemIndex).getText();
-        List <WebElement> actItemPriceElem = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(actItemsPrice)));
+        List <WebElement> actItemPriceElem = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(itemPriceElemActual)));
         String actualItemPrice = actItemPriceElem.get(randomItemIndex).getText();
 
         listOfAllItems.get(randomItemIndex).click();
