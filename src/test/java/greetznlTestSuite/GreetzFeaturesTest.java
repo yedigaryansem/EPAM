@@ -41,7 +41,7 @@ public class GreetzFeaturesTest {
         driver.close();
     }
 
-    @Test(enabled = true)
+    @Test
     public void addFavoriteTest(){
         WebDriverWait wait = new WebDriverWait(driver, 30);
         driver.get(linkPage);
@@ -72,8 +72,8 @@ public class GreetzFeaturesTest {
         Assert.assertEquals(actualPriceResult,expectedPriceResult);
     }
 
-    @Test(enabled=true)
-    public void itemQuantityEqualPriceTest() throws InterruptedException {
+    @Test
+    public void itemQuantityEqualPriceTest(){
         WebDriverWait wait = new WebDriverWait(driver, 30);
         int testCount = 4;
         String testCountToString = Integer.toString(testCount);
@@ -86,14 +86,17 @@ public class GreetzFeaturesTest {
         List<WebElement> cartPriceElem = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy((By.className("price-normal"))));
         float expectedPrice = reformatStringToFloat(cartPriceElem.get(1).getText()) * testCount;
 
+        String forActualPriceExpectedCondition = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("price-total"))).getText();
+
         WebElement itemQuantityInputElem = driver.findElement(By.name("amount"));
         itemQuantityInputElem.sendKeys(Keys.chord(Keys.CONTROL, "a"),testCountToString);
 
-        Thread.sleep(3000);
-        WebElement actualPriceElem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("price-total")));
-        float actualPrice = reformatStringToFloat(takeFromStringOnlyFloat(actualPriceElem.getText()));
+        boolean priceChanged = wait.until(ExpectedConditions.invisibilityOfElementWithText(By.className("price-total"),forActualPriceExpectedCondition));
+        if (priceChanged) {
+            WebElement actualPriceElem = driver.findElement(By.className("price-total"));
+            float actualPrice = reformatStringToFloat(takeFromStringOnlyFloat(actualPriceElem.getText()));
 
-        Assert.assertEquals(actualPrice,expectedPrice);
+            Assert.assertEquals(actualPrice,expectedPrice);
+        }
     }
-
 }
