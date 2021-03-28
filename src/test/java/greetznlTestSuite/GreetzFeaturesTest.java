@@ -38,7 +38,7 @@ public class GreetzFeaturesTest {
 
     @AfterMethod
     public  void closeDriver(){
-        driver.close();
+        driver.quit();
     }
 
     @Test
@@ -92,7 +92,9 @@ public class GreetzFeaturesTest {
         itemQuantityInputElem.sendKeys(Keys.chord(Keys.CONTROL, "a"),testCountToString);
 
         boolean priceChanged = wait.until(ExpectedConditions.invisibilityOfElementWithText(By.className("price-total"),forActualPriceExpectedCondition));
-        if (priceChanged) {
+        if (!priceChanged) {
+            Assert.fail("The total price did not change!");
+        } else {
             WebElement actualPriceElem = driver.findElement(By.className("price-total"));
             float actualPrice = reformatStringToFloat(takeFromStringOnlyFloat(actualPriceElem.getText()));
 
