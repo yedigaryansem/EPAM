@@ -73,7 +73,7 @@ public class GreetzFeaturesTest {
     }
 
     @Test
-    public void itemQuantityEqualPriceTest(){
+    public void q(){
         WebDriverWait wait = new WebDriverWait(driver, 30);
         int testCount = 4;
         String testCountToString = Integer.toString(testCount);
@@ -92,13 +92,11 @@ public class GreetzFeaturesTest {
         itemQuantityInputElem.sendKeys(Keys.chord(Keys.CONTROL, "a"),testCountToString);
 
         boolean priceChanged = wait.until(ExpectedConditions.invisibilityOfElementWithText(By.className("price-total"),forActualPriceExpectedCondition));
-        if (!priceChanged) {
-            Assert.fail("The total price did not change!");
-        } else {
-            WebElement actualPriceElem = driver.findElement(By.className("price-total"));
-            float actualPrice = reformatStringToFloat(takeFromStringOnlyFloat(actualPriceElem.getText()));
+        Assert.assertTrue(priceChanged,"The total price did not change!");
 
-            Assert.assertEquals(actualPrice,expectedPrice);
-        }
+        WebElement actualPriceElem = driver.findElement(By.className("price-total"));
+        float actualPrice = reformatStringToFloat(takeFromStringOnlyFloat(actualPriceElem.getText()));
+
+        Assert.assertEquals(actualPrice,expectedPrice,"The actual price does not match with expected price");
     }
 }
