@@ -1,9 +1,9 @@
-package greetznlTestSuite.utils;
+package HelperMethods;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class GreetzHelperMethods {
+public class HelperMethods {
     public static float reformatStringToFloat(String price){
 
         // convert String to char[] array
@@ -24,7 +24,7 @@ public class GreetzHelperMethods {
 
     public static String takeFromStringOnlyFloat(String totalPriceText){
 
-        String regex="([0-9]+[,][0-9]+)";
+        String regex="([0-9]+[,.][0-9]+)";
 
         Pattern pattern=Pattern.compile(regex);
         Matcher matcher=pattern.matcher(totalPriceText);

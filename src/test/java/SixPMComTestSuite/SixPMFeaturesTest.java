@@ -17,7 +17,7 @@ import java.util.Random;
 
 import static SixPMComTestSuite.utils.SixPmConstants.*;
 
-public class SixPMFeaturesTest {
+public class    SixPMFeaturesTest {
     private WebDriver driver;
 
     @BeforeClass

@@ -9,8 +9,8 @@ import org.testng.annotations.*;
 import java.util.List;
 
 import static greetznlTestSuite.utils.GreetzConstants.*;
-import static greetznlTestSuite.utils.GreetzHelperMethods.reformatStringToFloat;
-import static greetznlTestSuite.utils.GreetzHelperMethods.takeFromStringOnlyFloat;
+import static HelperMethods.HelperMethods.reformatStringToFloat;
+import static HelperMethods.HelperMethods.takeFromStringOnlyFloat;
 
 public class GreetzFeaturesTest {
     private WebDriver driver;
