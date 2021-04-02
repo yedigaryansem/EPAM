@@ -10,26 +10,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HomePage {
     private final WebDriver driver;
 
-    private final String pageLink = "https://www.amazon.com/";
+    private final String baseURL = "https://www.amazon.com/";
 
     private final By deliveryToArmeniaButton = By.id("glow-ingress-block");
     private final By navSearchBarForm = By.id("nav-search-bar-form");
-
-    //authors page by
 
     public HomePage(WebDriver driver){
         this.driver = driver;
     }
 
     public void getPage() {
-        driver.get(pageLink);
+        driver.get(baseURL);
     }
 
     public String getDeliveryToArmeniaButtonText(){
         return  waitForElement(deliveryToArmeniaButton).findElement(By.id("glow-ingress-line1")).getText() + " " +
                 waitForElement(deliveryToArmeniaButton).findElement(By.id("glow-ingress-line2")).getText();
     }
-    public WebElement waitForElement(By loc){
+    private WebElement waitForElement(By loc){
 
         WebDriverWait wait = new WebDriverWait(this.driver,10);
 

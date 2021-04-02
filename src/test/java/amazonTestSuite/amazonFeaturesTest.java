@@ -44,6 +44,7 @@ public class amazonFeaturesTest {
         homePage.searchBySearchingBarByText(testName);
 
         CategoryByBooksPage categoryByBooksPage = new CategoryByBooksPage(driver);
+        categoryByBooksPage.getPage("s?k=Tsugumi+Ohba&i=stripbooks-intl-ship&ref=nb_sb_noss");
 
         List<String> names = categoryByBooksPage.getAuthorsNameFromBooks(12);
         for (String name:names){
@@ -53,6 +54,7 @@ public class amazonFeaturesTest {
         categoryByBooksPage.clickOnAuthorsNamedFromBook();
 
         CategoryByKindleStorePage categoryByKindleStorePage = new CategoryByKindleStorePage(driver);
+        categoryByKindleStorePage.getPage("Tsugumi-Ohba/e/B0035POVWA?ref=sr_ntt_srch_lnk_1&qid=1617348759&sr=1-1");
         String actualText = categoryByKindleStorePage.getBooksByAuthorText();
         String expectedText = String.format("Books By %s", testName);
 
@@ -65,7 +67,7 @@ public class amazonFeaturesTest {
         }
     }
 
-    @Test(enabled = true)
+    @Test
     public void deliveryToArmeniaButtonTest(){
         HomePage homePage = new HomePage(driver);
         homePage.getPage();

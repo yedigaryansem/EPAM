@@ -13,6 +13,8 @@ public class CategoryByBooksPage {
 
     WebDriver driver;
 
+    private final String baseURL = "https://www.amazon.com/";
+
     private final By authorsNameDir = By.xpath(".//div[@class=\"a-row a-size-base a-color-secondary\"]" +
                                                "//a[@class=\"a-size-base a-link-normal\"]");
 
@@ -20,13 +22,18 @@ public class CategoryByBooksPage {
         this.driver = driver;
     }
 
-    public WebElement waitForElement(By loc){
+    public void getPage(String envURL) {
+        driver.get(baseURL + envURL);
+    }
+
+
+    private WebElement waitForElement(By loc){
         WebDriverWait wait = new WebDriverWait(this.driver,10);
 
         return wait.until(ExpectedConditions.visibilityOfElementLocated(loc));
     }
 
-    public List<WebElement> waitForElementsByCount(By loc, int count){
+    private List<WebElement> waitForElementsByCount(By loc, int count){
         WebDriverWait wait = new WebDriverWait(this.driver,10);
 
         return wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(loc,count-1));
