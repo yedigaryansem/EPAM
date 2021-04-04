@@ -56,7 +56,7 @@ public class amazonFeaturesTest {
         CategoryByKindleStorePage categoryByKindleStorePage = new CategoryByKindleStorePage(driver);
         categoryByKindleStorePage.getPage("Tsugumi-Ohba/e/B0035POVWA?ref=sr_ntt_srch_lnk_1&qid=1617348759&sr=1-1");
         String actualText = categoryByKindleStorePage.getBooksByAuthorText();
-        String expectedText = String.format("Books By %s", testName);
+        String expectedText = String.format("Titles By %s", testName);
 
         Assert.assertEquals(actualText,expectedText,String.format("The actual name does not match with the expected name %s",testName));
 

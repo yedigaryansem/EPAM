@@ -6,6 +6,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,25 +19,31 @@ public class CategoryByKindleStorePage {
 
     private final String baseURL = "https://www.amazon.com/";
 
-    private By booksByAuthorText = By.id("formatSelectorHeader");
-    private By sortingDropDownButton = By.ByLinkText.xpath(".//span[@id=\"sortBySelectors\"]//span[@class=\"a-button-inner\"]");
-    private By priceLowToHighSDDButton = By.xpath(".//li[@aria-labelledby=\"dropdown1_1\"]");
-    private By bookInfo = By.xpath(".//div[@class='a-fixed-right-grid-col a-col-left']");
+    @FindBy(id = "formatSelectorHeader")
+    private WebElement booksByAuthorText;
+    @FindBy(xpath = ".//span[@id=\"sortBySelectors\"]//span[@class=\"a-button-inner\"]")
+    private WebElement sortingDropDownButton;
+    @FindBy(xpath = ".//li[@aria-labelledby=\"dropdown1_1\"]")
+    private WebElement priceLowToHighSDDButton;
+    final String bookInfoString = ".//div[@class='a-fixed-right-grid-col a-col-left']";
+    @FindBy(xpath = bookInfoString)
+    private WebElement bookInfo;
     private By bookPrice = By.xpath(".//div//span[@class='a-size-base-plus a-color-price a-text-bold']");
 
     public CategoryByKindleStorePage(WebDriver driver){
         this.driver = driver;
+        PageFactory.initElements(driver,this);
     }
 
     public void getPage(String envURL) {
         driver.get(baseURL + envURL);
     }
 
-    private WebElement waitForElement(By loc){
+    private WebElement waitForElement(WebElement loc){
 
         WebDriverWait wait = new WebDriverWait(this.driver, 10);
 
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(loc));
+        return wait.until(ExpectedConditions.visibilityOf(loc));
     }
 
     private List<WebElement> waitForElementsByCount(By loc, int count){
@@ -53,7 +61,7 @@ public class CategoryByKindleStorePage {
     }
 
     public List<Float> getAllBooksPrice(int count){
-        List<WebElement> webElementsBookInfo = waitForElementsByCount(bookInfo, count);
+        List<WebElement> webElementsBookInfo = waitForElementsByCount(By.xpath(bookInfoString), count);
 
         List<Float> booksPrices = new ArrayList<Float>();
         for (WebElement webElementBI : webElementsBookInfo) {
