@@ -4,7 +4,7 @@ public class SixPmConstants {
 
     public static String homePage = "https://www.6pm.com/";
 
-    public static String accessoriesXPath = ".//*[@class='eb-z']//ul//a[@href='/c/accessories']";
+    public static String accessoriesXPath = ".//a[@href='/c/accessories']";
     public static String aviatorsButtonXPath = "//a[text()='Aviators']";
     public static String listOfAllItemsXPath = ".//div[@class='js-z']//article[@class=\"py-z ns-z\"]";
     public static String addToBagElemXPath = ".//button[@class=\"MR-z\"]";
