@@ -1,23 +1,36 @@
 package rest.gorestCoIn.utils;
 
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.http.Header;
-import io.restassured.response.ValidatableResponse;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import io.restassured.path.json.JsonPath;
 
 public class User {
     private String name;
     private String email;
     private String gender;
     private String status;
-    String id = "1752";
 
-    public User(String name,String email,String gender,String status){
-        this.name = name;
-        this.email = email;
-        this.gender = gender;
-        this.status = status;
+    public User(String body){
+
+        JsonPath jsonPath = new JsonPath(body);
+
+        this.name = jsonPath.get("name");
+        this.email = jsonPath.get("email");
+        this.gender = jsonPath.get("gender");
+        this.status = jsonPath.get("status");
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
