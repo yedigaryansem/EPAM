@@ -8,37 +8,28 @@ import io.restassured.response.ValidatableResponse;
 
 public class APICal {
 
-    public static Response post(String jsonBody, Header header){
+    public static Response post(String jsonBody, Header header) {
 
-        ValidatableResponse response = RestAssured
+        return RestAssured
                 .given()
                 .header(header)
                 .contentType(ContentType.JSON)
                 .body(jsonBody)
                 .post("users")
-                .then();
-
-        return response.extract().response();
+                .thenReturn();
     }
 
-    public static Response get(int id){
-        ValidatableResponse response = RestAssured
-                .given()
-                .when()
-                .get("users/" + id)
-                .then();
+    public static Response get(int id) {
 
-        return response.extract().response();
+        return RestAssured.
+                get("users/" + id).thenReturn();
     }
 
-    public static Response delete(int id, Header header){
-        ValidatableResponse response = RestAssured
+    public static Response delete(int id, Header header) {
+        return RestAssured
                 .given()
                 .header(header)
-                .when()
                 .delete("users/" + id)
-                .then();
-
-        return response.extract().response();
+                .thenReturn();
     }
 }

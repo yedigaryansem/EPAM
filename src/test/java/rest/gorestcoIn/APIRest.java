@@ -25,11 +25,12 @@ public class APIRest{
         Header header = new Header("Authorization", "Bearer 73e824b7f681b6e4d47c97ed07c2e26f6f91effd9a3496aad4f4960798709544");
 
         String body = "{\n" +
-                      "\"name\": \"tester\",\n" +
-                      "\"email\": \"tesdsdsdsstssststs@test.io\",\n" +
+                      "\"name\": \"tester" + System.currentTimeMillis() + "\",\n" +
+                      "\"email\": \"tesdsdsdsstssststs@test.io" + System.currentTimeMillis() + "\",\n" +
                       "\"gender\": \"Male\",\n" +
                       "\"status\": \"Active\"\n" +
                       "}";
+
         User user = new User(body);
 
         Response responseForPost = APICal.post(body, header);
@@ -57,5 +58,6 @@ public class APIRest{
 
         Assert.assertEquals(responseForGet.getStatusCode(),200);
         Assert.assertEquals(responseForGet.path("data.message"),"Resource not found");
+
     }
 }
