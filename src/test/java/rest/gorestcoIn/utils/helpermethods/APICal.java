@@ -1,4 +1,4 @@
-package rest.gorestCoIn.utils.helperMethodsForGorestCoIn;
+package rest.gorestcoIn.utils.helpermethods;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -15,7 +15,6 @@ public class APICal {
                 .header(header)
                 .contentType(ContentType.JSON)
                 .body(jsonBody)
-                .when()
                 .post("users")
                 .then();
 
@@ -43,4 +42,3 @@ public class APICal {
         return response.extract().response();
     }
 }
-

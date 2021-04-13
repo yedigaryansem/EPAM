@@ -1,4 +1,4 @@
-package rest.gorestCoIn.utils;
+package rest.gorestcoIn.utils;
 
 import io.restassured.path.json.JsonPath;
 
