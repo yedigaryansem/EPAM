@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import rest.gorestcoIn.utils.User;
-import rest.gorestcoIn.utils.helpermethods.ApiCal;
+import rest.gorestcoIn.utils.helpermethods.ApiCall;
 
 public class ApiRest {
     private final String endPoint = "users/";
@@ -27,13 +27,13 @@ public class ApiRest {
 
         User user = new User();
 
-        Response responseForPost = ApiCal.post(user, endPoint);
+        Response responseForPost = ApiCall.post(user, endPoint);
 
         Assert.assertEquals(responseForPost.path("code"), postStatusCode);
 
         userID = responseForPost.path("data.id");
 
-        Response responseForGet = ApiCal.get(endPoint, userID);
+        Response responseForGet = ApiCall.get(endPoint, userID);
 
         Assert.assertEquals(responseForGet.getStatusCode(), 200);
 
@@ -45,7 +45,7 @@ public class ApiRest {
         softAssert.assertAll();
 
 //      after posting user we should delete created user.
-        ApiCal.delete(userID, endPoint);
+        ApiCall.delete(userID, endPoint);
     }
 
     @Test
@@ -53,13 +53,13 @@ public class ApiRest {
 
 //      for deleting user we should post user.
         User user = new User();
-        ApiCal.post(user, endPoint);
+        ApiCall.post(user, endPoint);
 
-        Response responseForDel = ApiCal.delete(userID, endPoint);
+        Response responseForDel = ApiCall.delete(userID, endPoint);
 
         Assert.assertEquals(responseForDel.getStatusCode(), 200);
 
-        Response responseForGet = ApiCal.get(endPoint, userID);
+        Response responseForGet = ApiCall.get(endPoint, userID);
 
         Assert.assertEquals(responseForGet.path("code"), errorStatusCode);
         Assert.assertEquals(responseForGet.path("data.message"), "Resource not found");
