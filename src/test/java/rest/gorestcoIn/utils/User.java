@@ -3,20 +3,11 @@ package rest.gorestcoIn.utils;
 import io.restassured.path.json.JsonPath;
 
 public class User {
-    private String name;
-    private String email;
-    private String gender;
-    private String status;
+    private String name = "tester" + System.currentTimeMillis();
+    private String email = "tester" + System.currentTimeMillis() + "@test.io";
+    private final String gender = "Male";
+    private final String status = "Active";
 
-    public User(String body){
-
-        JsonPath jsonPath = new JsonPath(body);
-
-        this.name = jsonPath.get("name");
-        this.email = jsonPath.get("email");
-        this.gender = jsonPath.get("gender");
-        this.status = jsonPath.get("status");
-    }
 
     public String getEmail() {
         return email;

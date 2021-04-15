@@ -5,31 +5,32 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+import rest.gorestcoIn.utils.User;
 
-public class APICal {
+public class ApiCal {
 
-    public static Response post(String jsonBody, Header header) {
+    public static Response post(User user, Header header, String endPoint) {
 
         return RestAssured
                 .given()
                 .header(header)
                 .contentType(ContentType.JSON)
-                .body(jsonBody)
-                .post("users")
+                .body(user)
+                .post(endPoint)
                 .thenReturn();
     }
 
-    public static Response get(int id) {
+    public static Response get(String endPoint,int id) {
 
         return RestAssured.
-                get("users/" + id).thenReturn();
+                get(endPoint + id).thenReturn();
     }
 
-    public static Response delete(int id, Header header) {
+    public static Response delete(int id, Header header,String endPoint) {
         return RestAssured
                 .given()
                 .header(header)
-                .delete("users/" + id)
+                .delete(endPoint + id)
                 .thenReturn();
     }
 }
