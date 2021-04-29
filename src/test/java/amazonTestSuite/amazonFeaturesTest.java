@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.amazon.CategoryByBooksPage;
 import pages.amazon.CategoryByKindleStorePage;
@@ -32,23 +33,22 @@ public class amazonFeaturesTest {
     public  void closeDriver(){
         driver.quit();
     }
-        @Test
-    public void authorsNameTest(){
-        String testName = "Tsugumi Ohba";
-        String testCategory = "Books";
+
+    @Test(dataProvider = "DataOfAuthorsNameTest")
+    public void authorsNameTest(String authorName, String category, int booksCount){
 
         HomePage homePage = new HomePage(driver);
         homePage.getPage();
 
-        homePage.setCategoryForSearchByText(testCategory);
-        homePage.searchBySearchingBarByText(testName);
+        homePage.setCategoryForSearchByText(category);
+        homePage.searchBySearchingBarByText(authorName);
 
         CategoryByBooksPage categoryByBooksPage = new CategoryByBooksPage(driver);
         categoryByBooksPage.getPage("s?k=Tsugumi+Ohba&i=stripbooks-intl-ship&ref=nb_sb_noss");
 
-        List<String> names = categoryByBooksPage.getAuthorsNameFromBooks(12);
+        List<String> names = categoryByBooksPage.getAuthorsNameFromBooks(booksCount);
         for (String name:names){
-            Assert.assertEquals(name,testName,String.format("The actual name %s does not match with the expected name",name));
+            Assert.assertEquals(name, authorName, String.format("The actual name %s does not match with the expected name", name));
         }
 
         categoryByBooksPage.clickOnAuthorsNamedFromBook();
@@ -56,12 +56,12 @@ public class amazonFeaturesTest {
         CategoryByKindleStorePage categoryByKindleStorePage = new CategoryByKindleStorePage(driver);
         categoryByKindleStorePage.getPage("Tsugumi-Ohba/e/B0035POVWA?ref=sr_ntt_srch_lnk_1&qid=1617348759&sr=1-1");
         String actualText = categoryByKindleStorePage.getBooksByAuthorText();
-        String expectedText = String.format("Titles By %s", testName);
+        String expectedText = String.format("Titles By %s", authorName);
 
-        Assert.assertEquals(actualText,expectedText,String.format("The actual name does not match with the expected name %s",testName));
+        Assert.assertEquals(actualText,expectedText,String.format("The actual name does not match with the expected name %s", authorName));
 
         categoryByKindleStorePage.changeBooksSortingFromLowToHigh();
-        List<Float> prices = categoryByKindleStorePage.getAllBooksPrice(12);
+        List<Float> prices = categoryByKindleStorePage.getAllBooksPrice(booksCount);
         for (int i = 0; i < prices.size()-1; ++i) {
             Assert.assertTrue(prices.get(i)<=prices.get(i+1),"The sorting drop down is incorrect");
         }
@@ -76,5 +76,13 @@ public class amazonFeaturesTest {
         String expectedText = "Deliver to Armenia";
         Assert.assertEquals(actualText, expectedText, "The Button text does not match");
 
+    }
+
+
+    @DataProvider(name = "DataOfAuthorsNameTest")
+    public static Object[][]DataProvider(){
+        return new Object[][]{
+            {"Tsugumi Ohba","Books",12}
+        };
     }
 }
